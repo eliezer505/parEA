@@ -112,12 +112,12 @@ socialLogin.factory("fbService", function($q){
 			var deferred = $q.defer();
 			FB.login(function(res){
 				deferred.resolve(res);
-			}, {scope: 'user_birthday, user_location, user_photos, user_friends', auth_type: 'rerequest'});
+			}, {scope: 'email,public_profile', auth_type: 'rerequest'});
 			return deferred.promise;
 		},
 		getUserDetails: function(){
 			var deferred = $q.defer();
-			FB.api('/me?fields=name,email,picture,location', function(res){
+			FB.api('/me?fields=name,email,picture', function(res){
 				console.log(res);
 				if(!res || res.error){
 					deferred.reject('Error occured while fetching user details.');
